@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+</head>
+
+<body>
+
+    <h1>Products List</h1>
+
+    <a href="/add-products">Add Product</a>
+
+    <br><br>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Amazon Link</th>
+            <th>Action</th>
+        </tr>
+
+        {% for p in products %}
+
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.description }}</td>
+
+            <td>
+                <a href="{{ p.link }}" target="_blank">
+                    View Product
+                </a>
+            </td>
+
+            <td>
+                <form action="/delete-product/{{ p.id }}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+
+        {% else %}
+
+        <tr>
+            <td colspan="6">No products available.</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/">Home</a>
+
+</body>
+</html>
